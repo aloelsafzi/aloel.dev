@@ -1,7 +1,7 @@
-const Main = ({children}) => {
+const Main = ({children, className}) => {
   return (
     <>
-    <main>
+    <main className={`${className} mx-3`}>
       {children}
     </main>
     </>

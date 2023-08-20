@@ -1,19 +1,36 @@
+import { getAllPosts } from '@/app/lib/mdx'
+import DateFormatter from '@/app/lib/dateFormatter';
+
 import {
   Main,
-  Navbar
+  Navbar,
+  Badge
 } from "@/app/components";
     
-export default function Posts() {
+export default async function Posts() {
+  const data = getAllPosts()
+
   return (
     <>
       <Navbar />
-      <Main>
-        <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-center h-screen">
-          <div className="flex flex-col items-center justify-center h-40 bg-red-100 shadow-inner rounded-3xl p-5">
-            <h1>Ups..!! Posts on Development Ya.. :(</h1>
-            <a href="/" className="bg-gray-100 rounded-lg shadow-xl hover:shadow-inner p-2 mt-3">Go Home :)</a>
-          </div>
-        </div>
+      <Main className="my-10"> 
+        <div className='flex flex-col gap-y-3 w-full'>
+        {data.map((item, i) => {
+          const { data} = item 
+          return (
+            <a href={`/posts/${data.slug}`} key={`${i}`}>
+              <div className='p-5 border-gray-200 border rounded-3xl cursor-pointer hover:shadow-inner hover:rounded-3xl'>
+                <div className='flex justify-between'>
+                  <h1 className='text-lg'>{data.title}</h1>
+                  <Badge text={DateFormatter(data.date)} />
+                </div>
+                <hr className='mb-3 mt-1' />
+                <p className='text-sm antialiased font-light tracking-wide leading-relaxed indent-10'>{data.description}</p>
+              </div>
+            </a>
+          )
+        })}
+        </div>       
       </Main>
     </>
   )

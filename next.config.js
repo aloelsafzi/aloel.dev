@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     appName: 'Aloel.Dev',
-    version: '1.0.0',
+    version: '1.0.1',
     linkCv: 'https://drive.google.com/file/d/1_d1SVFAGtgWh_-nfMwQ-_BHYexonlJcd/view?usp=drive_link'
   },
   images: {
@@ -14,7 +14,12 @@ const nextConfig = {
         pathname: '/0nln4zk3z/aloel-blog/**',
       },
     ],
-  },
+  }
 }
 
-module.exports = nextConfig
+const withMDX = require('@next/mdx')({
+  options: {
+    providerImportSource: '@mdx-js/react',
+  },
+})
+module.exports = withMDX(nextConfig)

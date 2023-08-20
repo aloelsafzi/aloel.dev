@@ -1,6 +1,7 @@
 {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     }
