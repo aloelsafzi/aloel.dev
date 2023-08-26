@@ -23,13 +23,22 @@ export default async function Post({params}) {
       <Navbar />
       <Main> 
         <div className='flex md:justify-between justify-center mt-10 mb-3 items-start gap-x-10 gap-y-10 flex-wrap'>
-          <ButtonLink to="/posts"> 
+          <div className='flex justify-between items-center w-full md:hidden'>
+            <ButtonLink to="/posts"> 
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.0} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+              </svg>
+            </ButtonLink>
+            <Badge text={DateFormatter(data.date)} />
+          </div>
+          
+          <ButtonLink to="/posts" className={'hidden md:block'}> 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.0} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </ButtonLink>
           <h1 className='text-xl text-center tracking-wide leading-tight'>{data.title}</h1>
-          <Badge text={DateFormatter(data.date)} />
+          <Badge text={DateFormatter(data.date)} className={'hidden md:block'} />
         </div>
         <hr/>
         <div className='my-6'>
