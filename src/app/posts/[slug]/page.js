@@ -31,11 +31,12 @@ export default async function Post({params}) {
           <h1 className='text-xl text-center tracking-wide leading-tight'>{data.title}</h1>
           <Badge text={DateFormatter(data.date)} />
         </div>
-        <hr className='mb-20'/>
-
-        <div 
-          className={markdownStyles["markdown-body"]}
-          dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <hr/>
+        <div className='my-6'>
+          <div 
+            className={`${markdownStyles["markdown-body"]}`}
+            dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </div>
       </Main>
     </>
   )
