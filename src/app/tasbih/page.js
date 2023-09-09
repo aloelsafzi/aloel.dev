@@ -7,30 +7,42 @@ import {
 import { useState, useEffect } from "react"
 
 const useAudio = url => {
-  const [audio] = useState(new Audio(url));
-  const [playing, setPlaying] = useState(false);
+  const [audio, setAudio] = useState(null)
+  const [playing, setPlaying] = useState(false)
 
-  const toggle = () => setPlaying(!playing);
+  const toggle = () => setPlaying(!playing)
 
   useEffect(() => {
-      playing ? audio.play() : audio.pause();
+      setAudio(new Audio(url))
+    }, 
+    [url]
+  )
+
+  useEffect(() => {
+      if(audio){
+        playing ? audio.play() : audio.pause()
+      }
     },
     [audio, playing]
-  );
+  )
 
   useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false));
-    return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
-    };
-  }, [audio]);
+      if(audio) {
+        audio.addEventListener('ended', () => setPlaying(false))
+        return () => {
+          audio.removeEventListener('ended', () => setPlaying(false))
+        }
+      } 
+    }, 
+    [audio]
+  )
 
-  return [playing, toggle];
+  return [playing, toggle]
 };
 
 
 const Tasbih = () => {
-  const [playing, toggle] = useAudio('ping.mp3');
+  const [playing, toggle] = useAudio('ping.mp3')
 
   let [count, setCount] = useState(0)
   let [target, setTarget] = useState(0)
