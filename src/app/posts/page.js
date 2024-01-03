@@ -18,7 +18,7 @@ export default async function Posts() {
         <div className='flex flex-col gap-y-3 w-full'>
         {
           data.map((item, i) => {
-            const { data} = item 
+            const {data} = item 
             return (
               <Link href={`/posts/${data.slug}`} key={`${i}`}>
                 <CardPost data={data} />

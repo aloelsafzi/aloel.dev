@@ -1,10 +1,7 @@
-import mdx2Html from '@/app/lib/mdx2html'
-import markdownStyles from '@/app/styles/mdx-style.module.css'
-import DateFormatter from '@/app/lib/dateFormatter';
+"use client"
 
-import {
-  getPostBySlug
-} from '@/app/lib/mdx'
+import useSWR from 'swr'
+import { MDXRemote } from 'next-mdx-remote'
 
 import {
   Main,
@@ -12,11 +9,15 @@ import {
   Badge,
   ButtonLink
 } from "@/app/components";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
     
-export default async function Post({params}) {
-  const {slug} = params
-  const {data, content} = getPostBySlug(slug)
-  const contentHtml = await mdx2Html(content)
+export default function Post({params : {slug}}) {
+
+  const { data, error } = useSWR(`/api/posts/${slug}`, fetcher)
+
+  if (error) return <div className='flex justify-center mt-10'><Badge text="Failed to load" /></div>
+  if (!data) return <div className='flex justify-center mt-10'><Badge text="Loading..." /></div>
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function Post({params}) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
             </ButtonLink>
-            <Badge text={DateFormatter(data.date)} />
+            <Badge text={data.date} />
           </div>
           
           <ButtonLink to="/posts" className={'hidden md:block'}> 
@@ -38,13 +39,11 @@ export default async function Post({params}) {
             </svg>
           </ButtonLink>
           <h1 className='text-xl text-center tracking-wide leading-tight'>{data.title}</h1>
-          <Badge text={DateFormatter(data.date)} className={'hidden md:block'} />
+          <Badge text={data.date} className={'hidden md:block'} />
         </div>
         <hr/>
         <div className='my-6'>
-          <div 
-            className={`${markdownStyles["markdown-body"]}`}
-            dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          <MDXRemote {...data.content}/>
         </div>
       </Main>
     </>
