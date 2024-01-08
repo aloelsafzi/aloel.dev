@@ -1,8 +1,11 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import localFont from '@next/font/local'
 import Image from "next/image";
 
-const inter = Inter({ subsets: ['latin'] })
+const myFont = localFont({ 
+  src: './fonts/GT-Walsheim-Light-Trial-BF651b7fc714941.otf',
+  variable: '--my-font'
+})
 
 export const metadata = {
   title: `${process.env.appName}`,
@@ -12,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body className={`${inter.className}`}>
+      <body className={`${myFont.className}`}>
         <div className="absolute -z-10 h-full w-full">
           <Image
             src="/bg-line.svg"
