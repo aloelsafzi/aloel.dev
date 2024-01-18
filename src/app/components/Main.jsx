@@ -1,7 +1,7 @@
 const Main = ({ children, className }) => {
   return (
     <>
-      <main className={`${className} mx-3`}>
+      <main className={`${className} mx-3 my-4`}>
         {children}
       </main>
     </>

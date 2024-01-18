@@ -1,4 +1,5 @@
 import './globals.css'
+import './globalicons.css'
 import localFont from '@next/font/local'
 import Image from "next/image";
 

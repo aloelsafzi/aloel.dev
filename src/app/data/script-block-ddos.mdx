@@ -1,0 +1,64 @@
+---
+title: Shell script auto block ip dari DDOS attack, Nginx
+slug: script-block-ddos
+date: '2024-01-18'
+description: DDoS (Distributed Denial of Service) attack adalah serangan jaringan yang dilakukan oleh penyerang untuk mengganggu ketersediaan dan keamanan jaringan. Salah satu cara paling umum untuk melakukan DDoS attack adalah dengan menggunakan alat atau program yang disebut dengan "spam bot". Spam bot adalah program yang dapat mengirimkan pesan atau panggilan telepon yang berulang kali ke suatu alamat IP atau domain tertentu.
+---
+
+<b>Apa itu DDos Attack</b>
+<br />
+DDoS (Distributed Denial of Service) attack adalah serangan jaringan yang dilakukan oleh penyerang untuk mengganggu ketersediaan dan keamanan jaringan. Salah satu cara paling umum untuk melakukan DDoS attack adalah dengan menggunakan alat atau program yang disebut dengan "spam bot". Spam bot adalah program yang dapat mengirimkan pesan atau panggilan telepon yang berulang kali ke suatu alamat IP atau domain tertentu.
+
+Berikut shell script nya: <br/><br/> 
+
+```shell:block.sh
+#!/usr/bin/bash
+
+while true
+do
+        NOW=`date +"%d/%b/%Y:%T"`
+        setSleep=$3
+        maxHit=$2
+        nginx_log_acc=$1
+        uniq_ip=$(cat $nginx_log_acc |grep -i "$NOW"| awk '{print $1}'| sort -u)
+        # text info
+        echo "
+Jam [$NOW]
+-------------------------------------------------
+!Tekan Ctrl + C untuk stop program ini.. yach :)!
+-------------------------------------------------
+"
+
+        for ip in ${uniq_ip[@]}
+        do
+                lenHit=$(cat $nginx_log_acc |grep -i "$NOW"| wc -l)
+                echo "[$ip] length hit = $lenHit"
+                if [[ $lenHit -ge $maxHit ]]
+                then
+                        # command block ip with iptables
+                        iptables -I INPUT -s $ip -j DROP
+
+                        echo "total hit [$lenHit] success block from ip [$ip]"
+                        if [[-e list_block_ip.csv ]]
+                        then
+                                echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
+                        else
+                                touch list_block_ip.csv
+                                echo "Date,IP Address,Total Hit" >> list_block_ip.csv
+                                echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
+                        fi
+                fi
+        done
+        sleep $setSleep
+done
+
+```
+
+cara jalankan script : 
+```shell:~/
+./block.sh [path_log_file] [max_hit] [interval]
+```
+contoh:
+```shell:~/ 
+./block.sh /var/log/nginx/account/ssl-access.log 100 10
+```

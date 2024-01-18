@@ -22,8 +22,8 @@ export default function Post({params : {slug}}) {
   return (
     <>
       <Navbar />
-      <Main> 
-        <div className='flex md:justify-between justify-center mt-10 mb-3 items-start gap-x-10 gap-y-10 flex-wrap'>
+      <Main className={'mt-20'}> 
+        <div className='flex md:justify-between justify-center mb-3 items-start gap-x-10 gap-y-10 flex-wrap'>
           <div className='flex justify-between items-center w-full md:hidden'>
             <ButtonLink to="/posts"> 
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.0} stroke="currentColor" className="w-4 h-4">

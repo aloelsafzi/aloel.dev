@@ -6,7 +6,7 @@ const CardPost = ({ data }) => {
   return (
     <div className='p-5 border-gray-200 border rounded-3xl cursor-pointer hover:shadow-inner hover:rounded-3xl'>
       <div className='flex justify-between'>
-        <h1 className='text-lg'>{data.title}</h1>
+        <h1 className='text-lg sm:w-60 md:w-auto lg:w-auto'>{data.title}</h1>
         <Badge text={data.date} />
       </div>
       <hr className='mb-3 mt-1' />
