@@ -14,7 +14,7 @@ export default async function Posts() {
   return (
     <>
       <Navbar />
-      <Main className={'mt-20'}>
+      <Main className={'mt-20 pb-10'}>
         <h1 className='font-semibold text-lg mb-3 bg-gray-100 rounded-3xl px-3 py-1 shadow-inner flex items-center'>
           <Icon name={'note_stack'} />
           <span className='ml-3'>Daftar Post</span>

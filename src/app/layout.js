@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id">
       <body className={`${myFont.className}`}>
-        <div className="absolute -z-10 h-full w-full">
+        <div className="fixed -z-10 bottom-0 left-0 top-0 right-0">
           <Image
             src="/bg-line.svg"
             alt="background image"

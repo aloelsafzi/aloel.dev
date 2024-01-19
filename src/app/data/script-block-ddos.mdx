@@ -16,40 +16,40 @@ Berikut shell script nya: <br/><br/>
 
 while true
 do
-        NOW=`date +"%d/%b/%Y:%T"`
-        setSleep=$3
-        maxHit=$2
-        nginx_log_acc=$1
-        uniq_ip=$(cat $nginx_log_acc |grep -i "$NOW"| awk '{print $1}'| sort -u)
-        # text info
-        echo "
+  NOW=`date +"%d/%b/%Y:%T"`
+  setSleep=$3
+  maxHit=$2
+  nginx_log_acc=$1
+  uniq_ip=$(cat $nginx_log_acc |grep -i "$NOW"| awk '{print $1}'| sort -u)
+  # text info
+  echo "
 Jam [$NOW]
 -------------------------------------------------
 !Tekan Ctrl + C untuk stop program ini.. yach :)!
 -------------------------------------------------
 "
 
-        for ip in ${uniq_ip[@]}
-        do
-                lenHit=$(cat $nginx_log_acc |grep -i "$NOW"| wc -l)
-                echo "[$ip] length hit = $lenHit"
-                if [[ $lenHit -ge $maxHit ]]
-                then
-                        # command block ip with iptables
-                        iptables -I INPUT -s $ip -j DROP
+  for ip in ${uniq_ip[@]}
+  do
+    lenHit=$(cat $nginx_log_acc |grep -i "$NOW"| wc -l)
+    echo "[$ip] length hit = $lenHit"
+    if [[ $lenHit -ge $maxHit ]]
+    then
+      # command block ip with iptables
+      iptables -I INPUT -s $ip -j DROP
 
-                        echo "total hit [$lenHit] success block from ip [$ip]"
-                        if [[-e list_block_ip.csv ]]
-                        then
-                                echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
-                        else
-                                touch list_block_ip.csv
-                                echo "Date,IP Address,Total Hit" >> list_block_ip.csv
-                                echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
-                        fi
-                fi
-        done
-        sleep $setSleep
+      echo "total hit [$lenHit] success block from ip [$ip]"
+      if [[-e list_block_ip.csv ]]
+      then
+        echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
+      else
+        touch list_block_ip.csv
+        echo "Date,IP Address,Total Hit" >> list_block_ip.csv
+        echo "$NOW,$ip,$lenHit" >> list_block_ip.csv
+      fi
+    fi
+  done
+  sleep $setSleep
 done
 
 ```
