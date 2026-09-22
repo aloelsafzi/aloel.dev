@@ -1,6 +1,10 @@
-const Badge = ({ text, className }) => {
+const Badge = ({ text, className = '' }) => {
   return (
-    <p className={`${className} bg-gray-100 rounded-3xl w-fit p-1 px-3 text-xs shadow-inner h-fit`}>{text}</p>
+    <span
+      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70 shadow-2xs whitespace-nowrap ${className}`}
+    >
+      {text}
+    </span>
   )
 }
 
