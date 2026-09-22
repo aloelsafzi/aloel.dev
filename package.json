@@ -22,7 +22,7 @@
     "eslint-config-next": "13.4.13",
     "gray-matter": "^4.0.3",
     "next": "13.4.13",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "^6.0.0",
     "postcss": "8.4.27",
     "prismjs": "^1.29.0",
     "react": "18.2.0",
