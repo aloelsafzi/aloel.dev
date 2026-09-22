@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     appName: 'Aloel.Dev',
-    version: '1.0.2',
+    version: '1.1.0',
     linkCv: 'https://drive.google.com/file/d/1_d1SVFAGtgWh_-nfMwQ-_BHYexonlJcd/view?usp=drive_link'
   },
   images: {
