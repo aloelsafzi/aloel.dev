@@ -1,10 +1,8 @@
-const Main = ({ children, className }) => {
+const Main = ({ children, className = '' }) => {
   return (
-    <>
-      <main className={`${className} mx-3 my-4`}>
-        {children}
-      </main>
-    </>
+    <main className={`w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${className}`}>
+      {children}
+    </main>
   )
 }
 

@@ -1,38 +1,61 @@
 'use client'
 
 import Link from "next/link"
-import { Icon } from "@/app/components"
+import { usePathname } from "next/navigation"
+import { Icon, ThemeToggle } from "@/app/components"
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-function Example() {
+function AppsDropdown() {
+  const pathname = usePathname()
+  const isTasbihActive = pathname === '/tasbih'
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className={'hover:bg-gray-100 flex justify-center p-1 rounded-full'}>
-          <Icon name={'apps'} />
+        <Menu.Button
+          aria-label="Aplikasi dan Tools"
+          className={`flex items-center justify-center p-2 rounded-full transition-colors ${
+            isTasbihActive
+              ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 ring-2 ring-blue-500/20'
+              : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
+          }`}
+        >
+          <Icon name="apps" />
         </Menu.Button>
       </div>
+
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-100"
+        enter="transition ease-out duration-150"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
+        leave="transition ease-in duration-100"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-          <div className="px-1 py-1 ">
+        <Menu.Items className="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl bg-white dark:bg-zinc-900 p-2 shadow-xl shadow-zinc-900/10 dark:shadow-black/50 border border-zinc-200/80 dark:border-zinc-800 focus:outline-none z-50">
+          <div className="px-3 py-1.5 text-[11px] font-semibold tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
+            Aplikasi & Alat
+          </div>
+          <div className="mt-1 space-y-1">
             <Menu.Item>
               {({ active }) => (
                 <Link
                   href="/tasbih"
-                  className={`${active ? 'bg-gray-100 text-black' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  className={`${
+                    active || isTasbihActive
+                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white'
+                      : 'text-zinc-700 dark:text-zinc-300'
+                  } group flex items-center gap-3 w-full rounded-xl px-3 py-2.5 text-sm transition-colors`}
                 >
-                  <Icon name={'play_circle'} />
-                  <span className="ml-2">Tasbih App</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+                    <Icon name="play_circle" />
+                  </span>
+                  <div className="flex flex-col text-left">
+                    <span className="font-medium text-sm leading-tight">Tasbih Digital</span>
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 leading-tight">Penghitung dzikir</span>
+                  </div>
                 </Link>
               )}
             </Menu.Item>
@@ -44,22 +67,59 @@ function Example() {
 }
 
 const Navbar = () => {
+  const pathname = usePathname()
+
+  const isHome = pathname === '/'
+  const isPosts = pathname.startsWith('/posts')
+
   return (
-    <>
-      <div className=" bg-white fixed top-0 left-0 right-0 z-10 shadow-sm">
-        <nav className="flex justify-between p-3 items-center container mx-auto">
-          <Link href="/" className="font-semibold text-lg">{process.env.appName} <i className="text-xs bg-gray-100 p-1 px-2 rounded-full">{process.env.version}</i></Link>
-          <ul className="flex gap-x-4 items-center">
-            <li><Link className="hover:bg-gray-100 px-2 p-1 rounded-full" href="/">About</Link></li>
-            <li><Link className="hover:bg-gray-100 px-2 p-1 rounded-full" href="/posts">Posts</Link></li>
-            <li><Example /></li>
-          </ul>
+    <header className="sticky top-0 left-0 right-0 z-40 bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-200/70 dark:border-zinc-800/80 transition-colors duration-200">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="flex items-center justify-between h-16">
+          <Link
+            href="/"
+            className="group flex items-center gap-2 font-bold text-lg text-zinc-900 dark:text-white tracking-tight hover:opacity-80 transition-opacity"
+          >
+            <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-mono font-semibold">
+              A
+            </span>
+            <span>{process.env.appName}</span>
+            <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70">
+              v{process.env.version}
+            </span>
+          </Link>
+
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link
+              href="/"
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                isHome
+                  ? 'bg-zinc-900 text-white dark:bg-zinc-800 dark:text-white dark:border dark:border-zinc-700 shadow-xs hover:bg-zinc-800 dark:hover:bg-zinc-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
+              }`}
+            >
+              Tentang
+            </Link>
+            <Link
+              href="/posts"
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                isPosts
+                  ? 'bg-zinc-900 text-white dark:bg-zinc-800 dark:text-white dark:border dark:border-zinc-700 shadow-xs hover:bg-zinc-800 dark:hover:bg-zinc-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
+              }`}
+            >
+              Tulisan
+            </Link>
+
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800 mx-1 hidden sm:block" />
+
+            <ThemeToggle />
+            <AppsDropdown />
+          </div>
         </nav>
-        <hr />
       </div>
-    </>
+    </header>
   )
 }
-
 
 export default Navbar
