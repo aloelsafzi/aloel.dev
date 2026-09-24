@@ -10,7 +10,7 @@ const ProfileImage = () => {
         {/* Avatar container */}
         <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full overflow-hidden ring-4 ring-white dark:ring-zinc-900 shadow-xl shadow-zinc-200/80 dark:shadow-black/60 bg-zinc-100 dark:bg-zinc-800">
           <Image
-            src="https://ik.imagekit.io/0nln4zk3z/aloel-blog/aloel.jpg?updatedAt=1691966182099"
+            src="/aloel.jpg"
             alt="Samsul Fauzi"
             sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 192px"
             quality={85}

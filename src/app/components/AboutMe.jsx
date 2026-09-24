@@ -7,9 +7,15 @@ const skills = [
   { name: 'Tailwind CSS', category: 'frontend' },
   { name: 'JavaScript', category: 'language' },
   { name: 'Node.js', category: 'backend' },
-  { name: 'SQL', category: 'database' },
+  { name: 'ExpressJs', category: 'backend' },
+  { name: 'NestJs', category: 'backend' },
+  { name: 'Mysql', category: 'database' },
+  { name: 'PostgreSQL', category: 'database' },
   { name: 'NoSQL', category: 'database' },
   { name: 'Linux & Servers', category: 'devops' },
+  { name: 'Gitlab CI/CD', category: 'devops' },
+  { name: 'Docker', category: 'tools' },
+  { name: 'Docker Compose', category: 'tools' },
   { name: 'Git', category: 'tools' },
 ]
 
