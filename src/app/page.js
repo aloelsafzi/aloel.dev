@@ -6,6 +6,7 @@ import {
   Navbar,
   ProfileImage,
   SocialMedia,
+  Experience,
   CardPost,
   Footer
 } from "@/app/components"
@@ -26,6 +27,9 @@ export default function Home() {
           </div>
           <AboutMe />
         </section>
+
+        {/* Work Experience Section */}
+        <Experience />
 
         {/* Recent Posts Section */}
         {recentPosts.length > 0 && (

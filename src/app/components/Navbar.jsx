@@ -68,8 +68,6 @@ function AppsDropdown() {
 
 const Navbar = () => {
   const pathname = usePathname()
-
-  const isHome = pathname === '/'
   const isPosts = pathname.startsWith('/posts')
 
   return (
@@ -90,16 +88,6 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-1 sm:gap-2">
-            <Link
-              href="/"
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
-                isHome
-                  ? 'bg-zinc-900 text-white dark:bg-zinc-800 dark:text-white dark:border dark:border-zinc-700 shadow-xs hover:bg-zinc-800 dark:hover:bg-zinc-700'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
-              }`}
-            >
-              Tentang
-            </Link>
             <Link
               href="/posts"
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
