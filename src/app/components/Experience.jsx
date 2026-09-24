@@ -8,63 +8,65 @@ const defaultExperiences = [
     type: "Contract",
     current: true,
     description:
-      "Merancang dan mengembangkan solusi web end-to-end dengan fokus pada arsitektur yang scalable, performa optimal, dan pengalaman pengguna yang intuitif.",
+      "Bertanggung jawab atas pemeliharaan dan pengembangan fitur baru pada platform web internal perusahaan guna mendukung efisiensi operasional bisnis.",
     achievements: [
-      "Mengembangkan arsitektur aplikasi modern berbasis Next.js & React yang mempercepat waktu muat halaman hingga 40%.",
-      "Merancang dan mengintegrasikan RESTful API serta manajemen database SQL/NoSQL yang tangguh dan efisien.",
-      "Mengimplementasikan otomatisasi workflow deployment (CI/CD) dan pemeliharaan server Linux.",
+      "Memigrasi sistem aplikasi E-Office dari arsitektur monolitik ke microservices untuk meningkatkan skalabilitas dan kemudahan pemeliharaan.",
+      "Mengintegrasikan berbagai layanan (microservices) dan API internal untuk alur pertukaran data yang aman dan terpadu.",
+      "Meningkatkan kualitas antarmuka dan pengalaman pengguna (UI/UX) pada aplikasi E-Office agar lebih responsif dan intuitif.",
     ],
-    skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "SQL", "NoSQL", "Git"],
+    skills: ["React", "Node.js", "Django", "Tailwind CSS", "PostgreSQL", "GitLab", "Docker", "VueJs", "NestJs"],
   },
   {
     role: "Junior DevOps Engineer",
     company: "PT Wahana Prestasi Logistik",
     companyUrl: "",
-    location: "Indonesia",
+    location: "Tangerang Selatan, Indonesia",
     period: "2023 — 2024",
     type: "Contract",
     current: false,
     description:
-      "Bertanggung jawab atas perancangan antarmuka, pengembangan backend service, serta integrasi sistem pihak ketiga untuk berbagai proyek klien.",
+      "Bertanggung jawab atas modernisasi infrastruktur aplikasi melalui kontainerisasi Docker, pengelolaan server dan repositori, serta otomasi deployment dengan GitLab CI/CD.",
     achievements: [
-      "Membangun lebih dari 10 aplikasi web responsif menggunakan React, Vue.js, dan Node.js.",
-      "Mengoptimalkan query database dan caching untuk menangani lonjakan trafik pengguna.",
-      "Bekerja sama erat dengan tim desain dan produk untuk mewujudkan fitur baru secara tepat waktu.",
+      "Menginisiasi dan mengonfigurasi pipeline GitLab CI/CD menggunakan GitLab Runner untuk mengotomasi proses build, pengujian, dan deployment.",
+      "Mengimplementasikan kontainerisasi (Docker & Docker Compose) pada aplikasi internal serta mengelola image pada private registry.",
+      "Melakukan sentralisasi dan manajemen repositori source code seluruh aplikasi internal di GitLab.",
+      "Mempersiapkan dan mengonfigurasi server DRC (Disaster Recovery Center) untuk menjaga ketersediaan layanan dan kesiapan pemulihan sistem.",
     ],
-    skills: ["Vue.js", "React", "JavaScript", "Node.js", "MySQL", "Linux", "Git"],
+    skills: ["Linux", "Docker", "Docker Compose", "GitLab CI/CD", "Git", "Nginx", "Shell Script", "CentOS", "Ubuntu"],
   },
   {
     role: "Programmer",
     company: "PT Wahana Prestasi Logistik",
     companyUrl: "",
-    location: "Indonesia",
+    location: "Tangerang Selatan, Indonesia",
     period: "2022 — 2023",
     type: "Contract",
     current: false,
     description:
-      "Bertanggung jawab atas perancangan antarmuka, pengembangan backend service, serta integrasi sistem pihak ketiga untuk berbagai proyek klien.",
+      "Bertanggung jawab atas perancangan antarmuka pengguna, pengembangan backend, serta integrasi API pihak ketiga untuk mendukung operasional logistik pengiriman.",
     achievements: [
-      "Membangun lebih dari 10 aplikasi web responsif menggunakan React, Vue.js, dan Node.js.",
-      "Mengoptimalkan query database dan caching untuk menangani lonjakan trafik pengguna.",
-      "Bekerja sama erat dengan tim desain dan produk untuk mewujudkan fitur baru secara tepat waktu.",
+      "Mengintegrasikan sistem logistik dengan marketplace (Tokopedia dan Lazada) untuk sinkronisasi pesanan dan pengiriman.",
+      "Membangun API Tracking paket real-time yang digunakan mitra e-commerce untuk memantau status pengiriman secara akurat.",
+      "Mengembangkan modul web Customer Center guna mempermudah pengelolaan pengaduan dan permintaan layanan pelanggan.",
     ],
-    skills: ["Vue.js", "React", "JavaScript", "Node.js", "MySQL", "Linux", "Git"],
+    skills: ["Vue.js", "Quasar", "JavaScript", "Node.js", "MySQL", "Docker", "Nginx", "Perl", "Linux", "Git"],
   },
   {
     role: "Software Developer",
     company: "PT Bank SMBC Indonesia",
     companyUrl: "",
-    location: "Indonesia",
+    location: "Jakarta, Indonesia",
     period: "2020 — 2022",
     type: "Contract",
     current: false,
     description:
-      "Mengembangkan tampilan antarmuka web interaktif yang responsif dan konsisten di berbagai perangkat dan peramban.",
+      "Bertanggung jawab atas modernisasi aplikasi operasional perbankan serta riset dan pengembangan prototipe solusi perbankan digital.",
     achievements: [
-      "Menerjemahkan rancangan antarmuka Figma menjadi komponen web yang modular, bersih, dan mudah dirawat.",
-      "Meningkatkan skor aksesibilitas dan performa web sesuai standar Core Web Vitals.",
+      "Memigrasi sistem aplikasi legacy dari Lotus Notes ke platform web modern berbasis OutSystems guna mempercepat proses bisnis.",
+      "Mengembangkan prototipe aplikasi pengajuan pinjaman digital dengan memanfaatkan WebRTC untuk kebutuhan video KYC (Know Your Customer).",
+      "Mengimplementasikan fitur verifikasi data dan tanda tangan digital secara real-time untuk mempercepat proses persetujuan nasabah.",
     ],
-    skills: ["JavaScript", "HTML5", "CSS3", "Tailwind CSS", "REST API", "Git"],
+    skills: ["JavaScript", "Node.js", "Express.js", "OutSystems", "WebRTC", "GitLab", "Git"],
   },
 ]
 
@@ -124,19 +126,17 @@ const Experience = ({ experiences = defaultExperiences, className = "" }) => {
             <div className="flex flex-col items-center shrink-0 w-4 select-none" aria-hidden="true">
               {/* Line above dot: visible for all except first item */}
               <div
-                className={`w-0.5 h-6 sm:h-7 transition-colors ${
-                  index === 0 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
-                }`}
+                className={`w-0.5 h-6 sm:h-7 transition-colors ${index === 0 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
+                  }`}
               />
 
               {/* Indicator Dot */}
               <div className="relative flex items-center justify-center shrink-0 z-10">
                 <div
-                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 bg-white dark:bg-zinc-900 transition-colors flex items-center justify-center ${
-                    item.current
-                      ? "border-blue-600 dark:border-blue-400 ring-4 ring-blue-100 dark:ring-blue-950/80"
-                      : "border-zinc-300 dark:border-zinc-700 group-hover:border-blue-500"
-                  }`}
+                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 bg-white dark:bg-zinc-900 transition-colors flex items-center justify-center ${item.current
+                    ? "border-blue-600 dark:border-blue-400 ring-4 ring-blue-100 dark:ring-blue-950/80"
+                    : "border-zinc-300 dark:border-zinc-700 group-hover:border-blue-500"
+                    }`}
                 >
                   {item.current ? (
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
@@ -148,9 +148,8 @@ const Experience = ({ experiences = defaultExperiences, className = "" }) => {
 
               {/* Line below dot: fills to bottom of item, visible for all except last item */}
               <div
-                className={`w-0.5 grow transition-colors ${
-                  index === experiences.length - 1 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
-                }`}
+                className={`w-0.5 grow transition-colors ${index === experiences.length - 1 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
+                  }`}
               />
             </div>
 
@@ -207,11 +206,10 @@ const Experience = ({ experiences = defaultExperiences, className = "" }) => {
                   {/* Period & Employment Type Badges */}
                   <div className="flex sm:flex-col sm:items-end items-center gap-1.5 shrink-0 mt-1 sm:mt-0">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-mono ${
-                        item.current
-                          ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/60"
-                          : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70"
-                      }`}
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-mono ${item.current
+                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/60"
+                        : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70"
+                        }`}
                     >
                       {item.period}
                     </span>
