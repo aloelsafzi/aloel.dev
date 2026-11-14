@@ -1,7 +1,7 @@
 const Badge = ({ text, className = '' }) => {
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70 shadow-2xs whitespace-nowrap ${className}`}
+      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-mono bg-paper-muted dark:bg-obsidian-muted text-ink dark:text-ink-dark border border-paper-border dark:border-obsidian-border whitespace-nowrap ${className}`}
     >
       {text}
     </span>

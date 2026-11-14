@@ -1,13 +1,9 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import Link from "next/link"
-import {
-  Main,
-  Navbar,
-  Footer
-} from "@/app/components"
-import useTasbih from "./hooks/useTasbih"
+import { useEffect } from 'react'
+import Link from 'next/link'
+import { Main, Navbar, Footer } from '@/app/components'
+import useTasbih from './hooks/useTasbih'
 
 const PRESETS = [33, 99, 100, 0]
 
@@ -19,8 +15,10 @@ const Tasbih = () => {
     setQuickTarget,
     soundEnabled,
     setSoundEnabled,
+    vibrateEnabled,
+    setVibrateEnabled,
     onClickTasbih,
-    onClickreset
+    resetCount,
   } = useTasbih()
 
   const targetNum = Number(target) || 0
@@ -28,14 +26,25 @@ const Tasbih = () => {
   const isReached = isTargetSet && count >= targetNum
   const progressPercent = isTargetSet ? Math.min(100, Math.round((count / targetNum) * 100)) : null
 
-  // Keyboard shortcut: Spacebar to count
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
-        e.preventDefault()
-        onClickTasbih()
+      if (e.code !== 'Space') return
+      const el = e.target
+      const tag = el?.tagName
+      if (
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        tag === 'SELECT' ||
+        tag === 'BUTTON' ||
+        tag === 'A' ||
+        el?.isContentEditable
+      ) {
+        return
       }
+      e.preventDefault()
+      onClickTasbih()
     }
+
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [onClickTasbih])
@@ -44,69 +53,144 @@ const Tasbih = () => {
     <>
       <Navbar />
       <Main className="flex-1">
-        {/* Navigation & Header */}
         <div className="pt-2 sm:pt-4 mb-6">
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-          >
-            <span className="p-1 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 group-hover:border-zinc-300 dark:group-hover:border-zinc-700 shadow-2xs transition-all group-hover:-translate-x-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-              </svg>
-            </span>
+          <Link href="/" className="btn-subtle group -ml-3.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.8}
+              stroke="currentColor"
+              aria-hidden="true"
+              className="w-4 h-4 transition-transform duration-200 ease-out group-hover:-translate-x-0.5"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
             <span>Kembali ke Beranda</span>
           </Link>
         </div>
 
-        {/* Tasbih Card Container */}
         <div className="max-w-md mx-auto">
-          <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm border border-zinc-200/80 dark:border-zinc-800/90 rounded-3xl p-6 sm:p-8 shadow-sm dark:shadow-black/50 transition-colors">
-            {/* Top Toolbar */}
-            <div className="flex items-center justify-between pb-6 border-b border-zinc-100 dark:border-zinc-800/80">
+          <div className="bg-paper-elevated dark:bg-obsidian-elevated border border-paper-border dark:border-obsidian-border rounded-2xl p-6 sm:p-8">
+            <div className="flex items-start justify-between gap-4 pb-5 border-b border-paper-border dark:border-obsidian-border">
               <div>
-                <h1 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Tasbih Digital</h1>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">Penghitung dzikir sederhana & responsif</p>
+                <h1 className="text-2xl text-ink dark:text-ink-dark tracking-tight">
+                  Tasbih Digital
+                </h1>
+                <p className="text-sm text-ink-muted dark:text-ink-dark-muted mt-1">
+                  Penghitung dzikir dengan target kustom.
+                </p>
               </div>
 
-              {/* Sound Toggle */}
-              <button
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`p-2 rounded-xl border text-sm font-medium transition-colors ${
-                  soundEnabled
-                    ? 'bg-blue-50 dark:bg-blue-950/60 border-blue-200/80 dark:border-blue-800 text-blue-600 dark:text-blue-400'
-                    : 'bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-400 dark:text-zinc-500'
-                }`}
-                title={soundEnabled ? 'Suara aktif' : 'Suara dimatikan'}
-                aria-label={soundEnabled ? 'Matikan suara' : 'Aktifkan suara'}
-              >
-                {soundEnabled ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setVibrateEnabled(!vibrateEnabled)}
+                  aria-pressed={vibrateEnabled}
+                  aria-label={vibrateEnabled ? 'Matikan getar' : 'Aktifkan getar'}
+                  title={vibrateEnabled ? 'Getar aktif' : 'Getar dimatikan'}
+                  className={`flex items-center justify-center w-11 h-11 rounded-xl border text-xs font-mono transition-all duration-200 ease-out active:scale-95 ${
+                    vibrateEnabled
+                      ? 'bg-accent/10 dark:bg-accent-dark/15 border-accent/30 dark:border-accent-dark/30 text-accent dark:text-accent-dark'
+                      : 'bg-paper-muted dark:bg-obsidian-muted border-paper-border dark:border-obsidian-border text-ink-muted dark:text-ink-dark-muted hover:text-ink dark:hover:text-ink-dark'
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.8}
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-6 18.75h6"
+                    />
                   </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-3.75l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
-                  </svg>
-                )}
-              </button>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSoundEnabled(!soundEnabled)}
+                  aria-pressed={soundEnabled}
+                  aria-label={soundEnabled ? 'Matikan suara' : 'Aktifkan suara'}
+                  title={soundEnabled ? 'Suara aktif' : 'Suara dimatikan'}
+                  className={`flex items-center justify-center w-11 h-11 rounded-xl border transition-all duration-200 ease-out active:scale-95 ${
+                    soundEnabled
+                      ? 'bg-accent/10 dark:bg-accent-dark/15 border-accent/30 dark:border-accent-dark/30 text-accent dark:text-accent-dark'
+                      : 'bg-paper-muted dark:bg-obsidian-muted border-paper-border dark:border-obsidian-border text-ink-muted dark:text-ink-dark-muted hover:text-ink dark:hover:text-ink-dark'
+                  }`}
+                >
+                  {soundEnabled ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.8}
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.8}
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-3.75l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
 
-            {/* Target & Progress Bar */}
             <div className="mt-5">
-              <div className="flex items-center justify-between text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-2">
+              <div className="flex items-center justify-between text-xs font-mono text-ink-muted dark:text-ink-dark-muted mb-2">
                 <span>Target: {isTargetSet ? targetNum : 'Bebas'}</span>
                 {isTargetSet && (
-                  <span className={isReached ? 'text-emerald-600 dark:text-emerald-400 font-bold' : ''}>
-                    {isReached ? 'Target Tercapai! 🎉' : `${progressPercent}%`}
+                  <span
+                    aria-live="polite"
+                    className={
+                      isReached
+                        ? 'text-[#047857] dark:text-[#34D399] font-semibold'
+                        : ''
+                    }
+                  >
+                    {isReached ? 'Target tercapai' : `${progressPercent}%`}
                   </span>
                 )}
               </div>
               {isTargetSet && (
-                <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                <div
+                  role="progressbar"
+                  aria-valuenow={Math.min(count, targetNum)}
+                  aria-valuemin={0}
+                  aria-valuemax={targetNum}
+                  aria-label="Progres hitungan dzikir"
+                  className="w-full bg-paper-muted dark:bg-obsidian-muted rounded-full h-2 overflow-hidden"
+                >
                   <div
                     className={`h-full transition-all duration-200 rounded-full ${
-                      isReached ? 'bg-emerald-500' : 'bg-blue-600'
+                      isReached
+                        ? 'bg-[#047857] dark:bg-[#34D399]'
+                        : 'bg-accent dark:bg-accent-dark'
                     }`}
                     style={{ width: `${progressPercent}%` }}
                   />
@@ -114,58 +198,63 @@ const Tasbih = () => {
               )}
             </div>
 
-            {/* Big Count Display */}
             <div className="my-8 flex flex-col items-center justify-center">
               <div
-                className={`text-7xl sm:text-8xl font-black font-mono tracking-tighter select-none transition-transform duration-100 ${
-                  isReached ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-900 dark:text-white'
+                aria-live="polite"
+                className={`text-7xl sm:text-8xl font-mono font-semibold tabular-nums tracking-tighter select-none ${
+                  isReached
+                    ? 'text-[#047857] dark:text-[#34D399]'
+                    : 'text-ink dark:text-ink-dark'
                 }`}
               >
                 {count}
               </div>
-              <span className="text-xs text-zinc-400 dark:text-zinc-500 mt-1 uppercase tracking-wider font-semibold">
+              <span className="text-xs font-mono text-ink-muted dark:text-ink-dark-muted mt-2 uppercase tracking-wider">
                 Hitungan
               </span>
             </div>
 
-            {/* Main Tactile Tap Button */}
             <div className="flex justify-center mb-8">
               <button
                 type="button"
                 onClick={onClickTasbih}
                 aria-label="Tambah hitungan"
-                className={`relative group w-40 h-40 sm:w-44 sm:h-44 rounded-full flex flex-col items-center justify-center select-none cursor-pointer transition-all duration-150 active:scale-95 shadow-xl ${
+                className={`w-44 h-44 rounded-full flex flex-col items-center justify-center select-none transition-all duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.96] ring-8 ${
                   isReached
-                    ? 'bg-gradient-to-b from-emerald-500 to-emerald-600 text-white shadow-emerald-500/25 hover:from-emerald-400 hover:to-emerald-500 ring-8 ring-emerald-50 dark:ring-emerald-950/50'
-                    : 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-500/25 hover:from-blue-400 hover:to-blue-500 ring-8 ring-blue-50 dark:ring-blue-950/50'
+                    ? 'bg-[#047857] hover:bg-[#065F46] text-white ring-[#047857]/12 shadow-lg shadow-[#047857]/20 dark:bg-[#34D399] dark:hover:bg-[#6EE7B7] dark:text-obsidian dark:ring-[#34D399]/15 dark:shadow-[#34D399]/20'
+                    : 'bg-accent hover:bg-accent-hover text-white ring-accent/12 shadow-lg shadow-accent/20 dark:bg-accent-dark dark:hover:bg-accent-dark-hover dark:text-obsidian dark:ring-accent-dark/15 dark:shadow-accent-dark/20'
                 }`}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-10 h-10 transition-transform group-active:scale-90">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                </svg>
-                <span className="mt-1 text-xs font-bold tracking-widest uppercase">
+                <span className="font-mono text-sm font-semibold tracking-widest uppercase">
                   TEKAN
                 </span>
-                <span className="text-[10px] opacity-75 hidden sm:inline">(Spasi)</span>
+                <span className="mt-1 text-xs opacity-90 hidden sm:inline">
+                  atau tekan Spasi
+                </span>
               </button>
             </div>
 
-            {/* Quick Target Presets */}
-            <div className="space-y-3 pt-6 border-t border-zinc-100 dark:border-zinc-800/80">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
+            <div className="space-y-4 pt-6 border-t border-paper-border dark:border-obsidian-border">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-xs font-mono text-ink-muted dark:text-ink-dark-muted uppercase tracking-wider">
                   Preset Target
                 </span>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs text-zinc-400 dark:text-zinc-500">Kustom:</span>
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor="custom-target"
+                    className="text-xs text-ink-muted dark:text-ink-dark-muted"
+                  >
+                    Kustom:
+                  </label>
                   <input
+                    id="custom-target"
                     type="number"
                     min="0"
-                    value={target || ''}
+                    inputMode="numeric"
+                    value={target === 0 ? '' : target}
                     onChange={(e) => setTarget(e.target.value)}
                     placeholder="0"
-                    aria-label="Target kustom"
-                    className="w-16 px-2 py-1 text-xs text-center font-mono rounded-lg border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-white"
+                    className="w-20 min-h-[44px] px-2.5 py-2 text-sm text-center font-mono rounded-xl border border-[#CFC9BE] dark:border-[#383530] bg-paper dark:bg-obsidian text-ink dark:text-ink-dark transition-colors duration-200"
                   />
                 </div>
               </div>
@@ -176,11 +265,13 @@ const Tasbih = () => {
                   return (
                     <button
                       key={p}
+                      type="button"
                       onClick={() => setQuickTarget(p)}
-                      className={`py-1.5 text-xs font-medium rounded-xl border transition-colors ${
+                      aria-pressed={isSelected}
+                      className={`min-h-[44px] py-2 text-xs font-mono rounded-xl border transition-all duration-200 ease-out active:scale-[0.98] ${
                         isSelected
-                          ? 'bg-blue-600 dark:bg-blue-600 border-blue-600 dark:border-blue-600 text-white dark:text-white shadow-xs'
-                          : 'bg-zinc-50 dark:bg-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 border-zinc-200/80 dark:border-zinc-700/80 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white'
+                          ? 'bg-accent dark:bg-accent-dark border-accent dark:border-accent-dark text-white dark:text-obsidian font-semibold shadow-sm'
+                          : 'bg-paper dark:bg-obsidian-muted hover:bg-paper-muted dark:hover:bg-[#2E2C28] border-[#CFC9BE] dark:border-[#383530] text-ink dark:text-ink-dark'
                       }`}
                     >
                       {p === 0 ? 'Bebas' : p}
@@ -189,19 +280,13 @@ const Tasbih = () => {
                 })}
               </div>
 
-              {/* Reset Button */}
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={onClickreset}
-                  className="w-full py-2.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-red-50 dark:hover:bg-red-950/40 hover:border-red-200 dark:hover:border-red-900 hover:text-red-600 dark:hover:text-red-400 text-zinc-600 dark:text-zinc-400 text-xs font-semibold transition-all shadow-2xs active:scale-98 flex items-center justify-center gap-1.5"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-                  <span>Reset Hitungan</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={resetCount}
+                className="btn-secondary w-full"
+              >
+                Reset Hitungan
+              </button>
             </div>
           </div>
         </div>

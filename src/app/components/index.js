@@ -1,12 +1,13 @@
-export {default as Navbar} from "@/app/components/Navbar"
-export {default as SocialMedia} from "@/app/components/SocialMedia"
-export {default as ProfileImage} from "@/app/components/ProfileImage"
-export {default as Main} from "@/app/components/Main"
-export {default as AboutMe} from "@/app/components/AboutMe"
-export {default as Badge} from "@/app/components/Badge"
-export {default as ButtonLink} from "@/app/components/ButtonLink"
-export {default as CardPost} from "@/app/components/CardPost"
-export {default as Icon} from "@/app/components/Icon"
-export {default as Footer} from "@/app/components/Footer"
-export {default as ThemeToggle} from "@/app/components/ThemeToggle"
-export {default as Experience, default as WorkExperience} from "@/app/components/Experience"
+export { default as Navbar } from '@/app/components/Navbar'
+export { default as SocialMedia } from '@/app/components/SocialMedia'
+export { default as ProfileImage } from '@/app/components/ProfileImage'
+export { default as Main } from '@/app/components/Main'
+export { default as AboutMe } from '@/app/components/AboutMe'
+export { default as Badge } from '@/app/components/Badge'
+export { default as CardPost } from '@/app/components/CardPost'
+export { default as Errors } from '@/app/components/Errors'
+export { default as Footer } from '@/app/components/Footer'
+export { default as ThemeToggle } from '@/app/components/ThemeToggle'
+export { default as Experience, default as WorkExperience } from '@/app/components/Experience'
+export { default as CodingCat } from '@/app/components/CodingCat'
+export { default as KittenPlayingBall } from '@/app/components/KittenPlayingBall'

@@ -7,9 +7,10 @@ const ThemeToggle = ({ className = '' }) => {
 
   if (!mounted) {
     return (
-      <div className={`w-9 h-9 rounded-full flex items-center justify-center p-2 text-zinc-400 ${className}`}>
-        <span className="w-5 h-5 block" />
-      </div>
+      <div
+        aria-hidden="true"
+        className={`w-11 h-11 rounded-xl flex items-center justify-center ${className}`}
+      />
     )
   }
 
@@ -19,19 +20,19 @@ const ThemeToggle = ({ className = '' }) => {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? 'Ganti ke tema terang (Light Mode)' : 'Ganti ke tema gelap (Dark Mode)'}
+      aria-label={isDark ? 'Ganti ke tema terang' : 'Ganti ke tema gelap'}
       title={isDark ? 'Mode Terang' : 'Mode Gelap'}
-      className={`group relative flex items-center justify-center w-9 h-9 rounded-full text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-all duration-200 ${className}`}
+      className={`flex items-center justify-center w-11 h-11 rounded-xl text-ink-muted dark:text-ink-dark-muted hover:text-ink dark:hover:text-ink-dark hover:bg-paper-muted dark:hover:bg-obsidian-muted active:scale-95 transition-all duration-200 ease-out ${className}`}
     >
       {isDark ? (
-        // Sun Icon
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.8}
+          strokeWidth={1.75}
           stroke="currentColor"
-          className="w-5 h-5 text-amber-400 transition-transform duration-300 group-hover:rotate-45"
+          aria-hidden="true"
+          className="w-5 h-5 text-accent-dark transition-transform duration-200 ease-out"
         >
           <path
             strokeLinecap="round"
@@ -40,14 +41,14 @@ const ThemeToggle = ({ className = '' }) => {
           />
         </svg>
       ) : (
-        // Moon Icon
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.8}
+          strokeWidth={1.75}
           stroke="currentColor"
-          className="w-5 h-5 text-zinc-700 transition-transform duration-300 group-hover:-rotate-12"
+          aria-hidden="true"
+          className="w-5 h-5 text-ink transition-transform duration-200 ease-out"
         >
           <path
             strokeLinecap="round"
