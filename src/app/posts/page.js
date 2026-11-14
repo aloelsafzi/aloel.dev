@@ -4,12 +4,11 @@ import {
   Main,
   Navbar,
   CardPost,
-  Badge,
-  Footer
-} from "@/app/components"
+  Footer,
+} from '@/app/components'
 
 export const metadata = {
-  title: `Tulisan - ${process.env.appName}`,
+  title: 'Tulisan',
   description: 'Daftar artikel, tutorial, dan catatan software engineering oleh Samsul Fauzi.',
 }
 
@@ -20,40 +19,36 @@ export default async function Posts() {
     <>
       <Navbar />
       <Main className="flex-1">
-        {/* Page Header */}
-        <div className="pt-4 sm:pt-8 pb-8 border-b border-zinc-200/70 dark:border-zinc-800/80 mb-8">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold tracking-wider text-blue-600 dark:text-blue-400 uppercase">
-              Blog & Tulisan
+        <div className="pt-2 sm:pt-4 pb-8 border-b border-paper-border dark:border-obsidian-border">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h1 className="text-3xl sm:text-4xl tracking-tight text-ink dark:text-ink-dark">
+              Semua Tulisan
+            </h1>
+            <span className="font-mono text-xs text-ink-muted dark:text-ink-dark-muted">
+              {posts.length} artikel
             </span>
-            <Badge
-              text={`${posts.length} Artikel`}
-              className="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-mono text-xs"
-            />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
-            Semua Tulisan
-          </h1>
-          <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400 max-w-2xl">
-            Kumpulan artikel, catatan teknis, tips ngoding, dan dokumentasi eksplorasi seputar software development.
+          <p className="mt-3 text-base text-ink-muted dark:text-ink-dark-muted max-w-2xl leading-relaxed">
+            Kumpulan catatan teknis, tutorial ringkas, dan dokumentasi eksplorasi pengembangan perangkat lunak.
           </p>
         </div>
 
-        {/* Posts List */}
         {posts.length > 0 ? (
-          <div className="flex flex-col gap-4">
+          <div className="divide-y divide-paper-border dark:divide-obsidian-border border-b border-paper-border dark:border-obsidian-border">
             {posts.map((item, i) => {
               const { data } = item
               return (
                 <Link href={`/posts/${data.slug}`} key={data.slug || i} className="block">
-                  <CardPost data={data} />
+                  <CardPost data={data} headingAs="h2" />
                 </Link>
               )
             })}
           </div>
         ) : (
-          <div className="py-16 text-center bg-white dark:bg-zinc-900 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800 p-8">
-            <p className="text-zinc-500 dark:text-zinc-400">Belum ada tulisan yang dipublikasikan.</p>
+          <div className="py-12">
+            <p className="text-ink-muted dark:text-ink-dark-muted">
+              Belum ada tulisan yang dipublikasikan.
+            </p>
           </div>
         )}
       </Main>

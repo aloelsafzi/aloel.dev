@@ -1,27 +1,36 @@
 import './globals.css'
-import './globalicons.css'
-import localFont from '@next/font/local'
-import Image from "next/image"
+import localFont from 'next/font/local'
 import { ThemeProvider } from '@/app/context/ThemeContext'
 
-const myFont = localFont({ 
-  src: './fonts/GT-Walsheim-Light-Trial-BF651b7fc714941.otf',
-  variable: '--my-font'
+const myFont = localFont({
+  src: [
+    {
+      path: './fonts/GT-Walsheim-Light-Trial-BF651b7fc714941.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GT-Walsheim-Light-Oblique-Trial-BF651b7fc6b04a3.otf',
+      weight: '300',
+      style: 'italic',
+    },
+  ],
+  variable: '--my-font',
 })
 
 export const metadata = {
   title: {
     default: `${process.env.appName} - Software Engineer`,
-    template: `%s | ${process.env.appName}`
+    template: `%s | ${process.env.appName}`,
   },
-  description: 'Website pribadi Samsul Fauzi - Software Engineer dengan fokus pengembangan web dan mobile modern.',
+  description: 'Website pribadi Samsul Fauzi - Software Engineer dengan fokus pengembangan web dan mobile.',
   keywords: ['Samsul Fauzi', 'Aloel', 'Software Engineer', 'Frontend', 'Backend', 'React', 'Next.js'],
   authors: [{ name: 'Samsul Fauzi', url: 'https://aloel.dev' }],
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className="dark scroll-smooth" suppressHydrationWarning>
+    <html lang="id" className={`${myFont.variable} dark scroll-smooth`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -42,24 +51,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body
-        className={`${myFont.className} antialiased bg-[#fafafa] dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 selection:bg-blue-500/15 selection:text-blue-700 dark:selection:bg-blue-500/30 dark:selection:text-blue-300 min-h-screen flex flex-col transition-colors duration-200`}
-      >
+      <body className="font-sans antialiased bg-paper dark:bg-obsidian text-ink dark:text-ink-dark selection:bg-accent/15 selection:text-accent dark:selection:bg-accent-dark/25 dark:selection:text-accent-dark min-h-screen flex flex-col transition-colors duration-200">
+        <a href="#main-content" className="skip-link">
+          Langsung ke konten utama
+        </a>
         <ThemeProvider>
-          {/* Subtle background line pattern */}
-          <div className="fixed -z-10 inset-0 pointer-events-none overflow-hidden opacity-40 dark:opacity-10 transition-opacity">
-            <Image
-              src="/bg-line.svg"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-
-          {/* Ambient subtle light glow */}
-          <div className="fixed -z-10 -top-40 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[500px] bg-gradient-to-b from-blue-500/5 dark:from-blue-600/15 via-indigo-500/5 dark:via-indigo-600/10 to-transparent blur-3xl pointer-events-none" />
-
           <div className="flex flex-col min-h-screen">
             {children}
           </div>

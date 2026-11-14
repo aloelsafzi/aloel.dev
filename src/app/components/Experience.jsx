@@ -1,95 +1,116 @@
+import Badge from '@/app/components/Badge'
+
 const defaultExperiences = [
   {
-    role: "Full Stack Developer",
-    company: "PT Pegadaian",
-    companyUrl: "",
-    location: "Jakarta, Indonesia",
-    period: "2025 — Sekarang",
-    type: "Contract",
+    role: 'Full Stack Developer',
+    company: 'PT Pegadaian',
+    companyUrl: '',
+    location: 'Jakarta, Indonesia',
+    period: '2025 - Sekarang',
+    type: 'Contract',
     current: true,
     description:
-      "Bertanggung jawab atas pemeliharaan dan pengembangan fitur baru pada platform web internal perusahaan guna mendukung efisiensi operasional bisnis.",
+      'Memelihara dan mengembangkan fitur baru pada platform web internal perusahaan untuk mendukung operasional harian.',
     achievements: [
-      "Memigrasi sistem aplikasi E-Office dari arsitektur monolitik ke microservices untuk meningkatkan skalabilitas dan kemudahan pemeliharaan.",
-      "Mengintegrasikan berbagai layanan (microservices) dan API internal untuk alur pertukaran data yang aman dan terpadu.",
-      "Meningkatkan kualitas antarmuka dan pengalaman pengguna (UI/UX) pada aplikasi E-Office agar lebih responsif dan intuitif.",
+      'Memigrasi aplikasi E-Office dari arsitektur monolitik ke microservices agar setiap layanan lebih mudah dikembangkan dan dipelihara.',
+      'Mengintegrasikan layanan microservices dan API internal untuk alur pertukaran data lintas modul.',
+      'Memperbaiki antarmuka dan alur penggunaan aplikasi E-Office agar lebih responsif di berbagai ukuran layar.',
     ],
-    skills: ["React", "Node.js", "Django", "Tailwind CSS", "PostgreSQL", "GitLab", "Docker", "VueJs", "NestJs"],
+    skills: ['React', 'Node.js', 'Django', 'Tailwind CSS', 'PostgreSQL', 'GitLab', 'Docker', 'Vue.js', 'NestJS'],
   },
   {
-    role: "Junior DevOps Engineer",
-    company: "PT Wahana Prestasi Logistik",
-    companyUrl: "",
-    location: "Tangerang Selatan, Indonesia",
-    period: "2023 — 2024",
-    type: "Contract",
+    role: 'Junior DevOps Engineer',
+    company: 'PT Wahana Prestasi Logistik',
+    companyUrl: '',
+    location: 'Tangerang Selatan, Indonesia',
+    period: '2023 - 2024',
+    type: 'Contract',
     current: false,
     description:
-      "Bertanggung jawab atas modernisasi infrastruktur aplikasi melalui kontainerisasi Docker, pengelolaan server dan repositori, serta otomasi deployment dengan GitLab CI/CD.",
+      'Menangani kontainerisasi aplikasi internal, pengelolaan server dan repositori, serta otomasi deployment dengan GitLab CI/CD.',
     achievements: [
-      "Menginisiasi dan mengonfigurasi pipeline GitLab CI/CD menggunakan GitLab Runner untuk mengotomasi proses build, pengujian, dan deployment.",
-      "Mengimplementasikan kontainerisasi (Docker & Docker Compose) pada aplikasi internal serta mengelola image pada private registry.",
-      "Melakukan sentralisasi dan manajemen repositori source code seluruh aplikasi internal di GitLab.",
-      "Mempersiapkan dan mengonfigurasi server DRC (Disaster Recovery Center) untuk menjaga ketersediaan layanan dan kesiapan pemulihan sistem.",
+      'Menyiapkan pipeline GitLab CI/CD dengan GitLab Runner untuk mengotomasi proses build, pengujian, dan deployment.',
+      'Mengemas aplikasi internal menggunakan Docker dan Docker Compose serta mengelola image di private registry.',
+      'Menyatukan repositori source code aplikasi internal ke dalam satu manajemen terpusat di GitLab.',
+      'Menyiapkan dan mengonfigurasi server DRC (Disaster Recovery Center) untuk menjaga kesiapan pemulihan layanan.',
     ],
-    skills: ["Linux", "Docker", "Docker Compose", "GitLab CI/CD", "Git", "Nginx", "Shell Script", "CentOS", "Ubuntu"],
+    skills: ['Linux', 'Docker', 'Docker Compose', 'GitLab CI/CD', 'Git', 'Nginx', 'Shell Script', 'CentOS', 'Ubuntu'],
   },
   {
-    role: "Programmer",
-    company: "PT Wahana Prestasi Logistik",
-    companyUrl: "",
-    location: "Tangerang Selatan, Indonesia",
-    period: "2022 — 2023",
-    type: "Contract",
+    role: 'Programmer',
+    company: 'PT Wahana Prestasi Logistik',
+    companyUrl: '',
+    location: 'Tangerang Selatan, Indonesia',
+    period: '2022 - 2023',
+    type: 'Contract',
     current: false,
     description:
-      "Bertanggung jawab atas perancangan antarmuka pengguna, pengembangan backend, serta integrasi API pihak ketiga untuk mendukung operasional logistik pengiriman.",
+      'Merancang antarmuka pengguna, membangun layanan backend, dan mengintegrasikan API pihak ketiga untuk operasional pengiriman logistik.',
     achievements: [
-      "Mengintegrasikan sistem logistik dengan marketplace (Tokopedia dan Lazada) untuk sinkronisasi pesanan dan pengiriman.",
-      "Membangun API Tracking paket real-time yang digunakan mitra e-commerce untuk memantau status pengiriman secara akurat.",
-      "Mengembangkan modul web Customer Center guna mempermudah pengelolaan pengaduan dan permintaan layanan pelanggan.",
+      'Mengintegrasikan sistem logistik dengan marketplace (Tokopedia dan Lazada) untuk sinkronisasi pesanan dan pengiriman.',
+      'Membangun API pelacakan paket real-time bagi mitra e-commerce untuk memantau status pengiriman.',
+      'Mengembangkan modul web Customer Center untuk mengelola pengaduan dan permintaan layanan pelanggan.',
     ],
-    skills: ["Vue.js", "Quasar", "JavaScript", "Node.js", "MySQL", "Docker", "Nginx", "Perl", "Linux", "Git"],
+    skills: ['Vue.js', 'Quasar', 'JavaScript', 'Node.js', 'MySQL', 'Docker', 'Nginx', 'Perl', 'Linux', 'Git'],
   },
   {
-    role: "Software Developer",
-    company: "PT Bank SMBC Indonesia",
-    companyUrl: "",
-    location: "Jakarta, Indonesia",
-    period: "2020 — 2022",
-    type: "Contract",
+    role: 'Software Developer',
+    company: 'PT Bank SMBC Indonesia',
+    companyUrl: '',
+    location: 'Jakarta, Indonesia',
+    period: '2020 - 2022',
+    type: 'Contract',
     current: false,
     description:
-      "Bertanggung jawab atas modernisasi aplikasi operasional perbankan serta riset dan pengembangan prototipe solusi perbankan digital.",
+      'Memodernisasi aplikasi operasional perbankan serta membangun prototipe layanan perbankan digital.',
     achievements: [
-      "Memigrasi sistem aplikasi legacy dari Lotus Notes ke platform web modern berbasis OutSystems guna mempercepat proses bisnis.",
-      "Mengembangkan prototipe aplikasi pengajuan pinjaman digital dengan memanfaatkan WebRTC untuk kebutuhan video KYC (Know Your Customer).",
-      "Mengimplementasikan fitur verifikasi data dan tanda tangan digital secara real-time untuk mempercepat proses persetujuan nasabah.",
+      'Memigrasi aplikasi legacy dari Lotus Notes ke platform web berbasis OutSystems.',
+      'Mengembangkan prototipe pengajuan pinjaman digital dengan WebRTC untuk kebutuhan video KYC (Know Your Customer).',
+      'Mengimplementasikan alur verifikasi data dan tanda tangan digital secara real-time untuk proses persetujuan nasabah.',
     ],
-    skills: ["JavaScript", "Node.js", "Express.js", "OutSystems", "WebRTC", "GitLab", "Git"],
+    skills: ['JavaScript', 'Node.js', 'Express.js', 'OutSystems', 'WebRTC', 'GitLab', 'Git'],
   },
 ]
 
-const Experience = ({ experiences = defaultExperiences, className = "" }) => {
+const Experience = ({ experiences = defaultExperiences, className = '' }) => {
   return (
     <section
       id="experience"
-      className={`mt-8 border-t border-zinc-200/70 dark:border-zinc-800/80 pt-12 ${className}`}
+      aria-labelledby="experience-heading"
+      className={`mt-16 sm:mt-20 border-t border-paper-border dark:border-obsidian-border pt-12 sm:pt-16 ${className}`}
     >
-      {/* Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/60 mb-2">
-            <span>Karier</span>
-            <span className="text-blue-300 dark:text-blue-700">·</span>
-            <span>Jejak Langkah</span>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div className="flex items-start gap-3.5">
+          <div
+            aria-hidden="true"
+            className="mt-1 flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 dark:bg-accent-dark/15 border border-accent/25 dark:border-accent-dark/25 text-accent dark:text-accent-dark shrink-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.75}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
-            Pengalaman Kerja
-          </h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-xl">
-            Perjalanan karier profesional dan kontribusi saya dalam merancang serta mengembangkan produk digital.
-          </p>
+          <div>
+            <h2
+              id="experience-heading"
+              className="text-2xl sm:text-3xl tracking-tight text-ink dark:text-ink-dark"
+            >
+              Pengalaman Kerja
+            </h2>
+            <p className="text-sm sm:text-base text-ink-muted dark:text-ink-dark-muted mt-1 max-w-xl">
+              Kronologi perjalanan karier dan kontribusi rekayasa perangkat lunak sejak 2020.
+            </p>
+          </div>
         </div>
 
         {process.env.linkCv && (
@@ -97,16 +118,17 @@ const Experience = ({ experiences = defaultExperiences, className = "" }) => {
             href={process.env.linkCv}
             target="_blank"
             rel="noopener noreferrer"
-            className="self-start sm:self-center inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors shrink-0"
+            className="btn-subtle group shrink-0 -ml-3.5 sm:ml-0 text-accent dark:text-accent-dark"
           >
-            <span>Unduh Resume (CV)</span>
+            <span>Lihat CV lengkap</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={2}
+              strokeWidth={1.8}
               stroke="currentColor"
-              className="w-4 h-4"
+              aria-hidden="true"
+              className="w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             >
               <path
                 strokeLinecap="round"
@@ -118,159 +140,158 @@ const Experience = ({ experiences = defaultExperiences, className = "" }) => {
         )}
       </div>
 
-      {/* Timeline List */}
       <div className="relative">
-        {experiences.map((item, index) => (
-          <div key={index} className="relative flex items-stretch gap-4 sm:gap-6 group">
-            {/* Left Timeline Rail (Line + Dot) */}
-            <div className="flex flex-col items-center shrink-0 w-4 select-none" aria-hidden="true">
-              {/* Line above dot: visible for all except first item */}
-              <div
-                className={`w-0.5 h-6 sm:h-7 transition-colors ${index === 0 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
-                  }`}
-              />
-
-              {/* Indicator Dot */}
-              <div className="relative flex items-center justify-center shrink-0 z-10">
+        {experiences.map((item, index) => {
+          const isLast = index === experiences.length - 1
+          return (
+            <article
+              key={`${item.company}-${item.period}-${index}`}
+              className="group relative flex items-stretch gap-4 sm:gap-6"
+            >
+              <div className="flex flex-col items-center shrink-0 w-9" aria-hidden="true">
                 <div
-                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 bg-white dark:bg-zinc-900 transition-colors flex items-center justify-center ${item.current
-                    ? "border-blue-600 dark:border-blue-400 ring-4 ring-blue-100 dark:ring-blue-950/80"
-                    : "border-zinc-300 dark:border-zinc-700 group-hover:border-blue-500"
-                    }`}
+                  className={`w-px h-3 ${
+                    index === 0 ? 'bg-transparent' : 'bg-paper-border dark:bg-obsidian-border'
+                  }`}
+                />
+                <div
+                  className={`flex items-center justify-center w-9 h-9 rounded-xl border transition-colors shrink-0 ${
+                    item.current
+                      ? 'bg-accent text-white border-accent dark:bg-accent-dark dark:text-obsidian dark:border-accent-dark shadow-sm'
+                      : 'bg-paper-elevated dark:bg-obsidian-elevated border-[#CFC9BE] dark:border-[#383530] text-ink-muted dark:text-ink-dark-muted group-hover:border-accent dark:group-hover:border-accent-dark group-hover:text-accent dark:group-hover:text-accent-dark'
+                  }`}
                 >
                   {item.current ? (
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.8}
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"
+                      />
+                    </svg>
                   ) : (
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700 group-hover:bg-blue-500 transition-colors" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.8}
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
                   )}
                 </div>
+                <div
+                  className={`w-px grow ${
+                    isLast ? 'bg-transparent' : 'bg-paper-border dark:bg-obsidian-border'
+                  }`}
+                />
               </div>
 
-              {/* Line below dot: fills to bottom of item, visible for all except last item */}
               <div
-                className={`w-0.5 grow transition-colors ${index === experiences.length - 1 ? "bg-transparent" : "bg-zinc-200 dark:bg-zinc-800"
-                  }`}
-              />
-            </div>
+                className={`grow min-w-0 pt-1 ${
+                  isLast
+                    ? 'pb-2'
+                    : 'pb-8 sm:pb-10 mb-5 sm:mb-6 border-b border-paper-border dark:border-obsidian-border'
+                }`}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+                  <div className="md:col-span-4 flex flex-col items-start">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 font-mono text-sm text-ink dark:text-ink-dark">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.75}
+                          stroke="currentColor"
+                          aria-hidden="true"
+                          className="w-3.5 h-3.5 text-accent dark:text-accent-dark shrink-0"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                          />
+                        </svg>
+                        <span>{item.period}</span>
+                      </span>
+                      {item.current && (
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono bg-accent/10 dark:bg-accent-dark/15 text-accent dark:text-accent-dark border border-accent/30 dark:border-accent-dark/30">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark" aria-hidden="true" />
+                          Saat ini
+                        </span>
+                      )}
+                    </div>
 
-            {/* Experience Card Wrapper with bottom spacing */}
-            <div className={`grow min-w-0 ${index === experiences.length - 1 ? "pb-0" : "pb-8 sm:pb-10"}`}>
-              <article className="p-5 sm:p-6 bg-white/90 dark:bg-zinc-900/80 hover:bg-white dark:hover:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/90 hover:border-zinc-300 dark:hover:border-zinc-700 rounded-2xl shadow-2xs hover:shadow-md hover:shadow-zinc-200/60 dark:hover:shadow-black/50 hover:-translate-y-0.5 transition-all duration-200">
-                {/* Header: Role, Company, Period & Type */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-snug">
-                      {item.role}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-1.5 mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                    <div className="mt-2 text-sm text-ink dark:text-ink-dark font-medium">
                       {item.companyUrl ? (
                         <a
                           href={item.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+                          className="hover:text-accent dark:hover:text-accent-dark underline underline-offset-4"
                         >
                           {item.company}
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                            className="w-3.5 h-3.5"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                            />
-                          </svg>
                         </a>
                       ) : (
-                        <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                          {item.company}
-                        </span>
-                      )}
-
-                      {item.location && (
-                        <>
-                          <span className="text-zinc-300 dark:text-zinc-700">·</span>
-                          <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                            {item.location}
-                          </span>
-                        </>
+                        <span>{item.company}</span>
                       )}
                     </div>
+
+                    {(item.location || item.type) && (
+                      <p className="mt-1 text-xs text-ink-muted dark:text-ink-dark-muted">
+                        {[item.location, item.type].filter(Boolean).join(' · ')}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Period & Employment Type Badges */}
-                  <div className="flex sm:flex-col sm:items-end items-center gap-1.5 shrink-0 mt-1 sm:mt-0">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-mono ${item.current
-                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/60"
-                        : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/70"
-                        }`}
-                    >
-                      {item.period}
-                    </span>
-                    {item.type && (
-                      <span className="text-[11px] text-zinc-400 dark:text-zinc-500 font-medium">
-                        {item.type}
-                      </span>
+                  <div className="md:col-span-8 min-w-0">
+                    <h3 className="text-lg sm:text-xl text-ink dark:text-ink-dark tracking-tight">
+                      {item.role}
+                    </h3>
+
+                    {item.description && (
+                      <p className="mt-2 text-sm sm:text-base text-ink-muted dark:text-ink-dark-muted leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+
+                    {item.achievements && item.achievements.length > 0 && (
+                      <ul className="mt-4 list-disc pl-4 space-y-2 text-sm text-ink dark:text-ink-dark marker:text-accent dark:marker:text-accent-dark">
+                        {item.achievements.map((achievement, i) => (
+                          <li key={i} className="leading-relaxed">
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {item.skills && item.skills.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-1.5">
+                        {item.skills.map((skill) => (
+                          <Badge key={skill} text={skill} />
+                        ))}
+                      </div>
                     )}
                   </div>
                 </div>
-
-                {/* Description */}
-                {item.description && (
-                  <p className="mt-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
-                    {item.description}
-                  </p>
-                )}
-
-                {/* Key Achievements / Responsibilities */}
-                {item.achievements && item.achievements.length > 0 && (
-                  <ul className="mt-3.5 space-y-1.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-                    {item.achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-4 h-4 text-blue-500 shrink-0 mt-0.5"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Tech Stack Chips */}
-                {item.skills && item.skills.length > 0 && (
-                  <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex flex-wrap items-center gap-1.5">
-                    <span className="text-[11px] font-semibold text-zinc-400 dark:text-zinc-500 mr-1 uppercase tracking-wider">
-                      Tech:
-                    </span>
-                    {item.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200/60 dark:border-zinc-700/60 shadow-2xs"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </article>
-            </div>
-          </div>
-        ))}
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

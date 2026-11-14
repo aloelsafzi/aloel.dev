@@ -1,12 +1,22 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext({
   theme: 'dark',
+  mounted: false,
   toggleTheme: () => {},
   setTheme: () => {},
 })
+
+function applyDocumentTheme(nextTheme) {
+  if (typeof document === 'undefined') return
+  if (nextTheme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+}
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setThemeState] = useState('dark')
@@ -15,46 +25,34 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     setMounted(true)
     try {
-      const savedTheme = localStorage.getItem('theme')
-      if (savedTheme === 'light') {
-        setThemeState('light')
-        document.documentElement.classList.remove('dark')
-      } else {
-        setThemeState('dark')
-        document.documentElement.classList.add('dark')
-      }
-    } catch (e) {
+      const savedTheme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark'
+      setThemeState(savedTheme)
+      applyDocumentTheme(savedTheme)
+    } catch {
       setThemeState('dark')
-      document.documentElement.classList.add('dark')
+      applyDocumentTheme('dark')
     }
   }, [])
 
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    setThemeState(nextTheme)
+  const setTheme = useCallback((newTheme) => {
+    const resolved = newTheme === 'light' ? 'light' : 'dark'
+    setThemeState(resolved)
     try {
-      localStorage.setItem('theme', nextTheme)
-    } catch (e) {}
+      localStorage.setItem('theme', resolved)
+    } catch {}
+    applyDocumentTheme(resolved)
+  }, [])
 
-    if (nextTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
-
-  const setTheme = (newTheme) => {
-    setThemeState(newTheme)
-    try {
-      localStorage.setItem('theme', newTheme)
-    } catch (e) {}
-
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
+  const toggleTheme = useCallback(() => {
+    setThemeState((prev) => {
+      const nextTheme = prev === 'dark' ? 'light' : 'dark'
+      try {
+        localStorage.setItem('theme', nextTheme)
+      } catch {}
+      applyDocumentTheme(nextTheme)
+      return nextTheme
+    })
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme, mounted }}>
