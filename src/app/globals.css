@@ -473,3 +473,339 @@ pre[class*='language-'] {
 .dark .token.variable {
   color: #FDE047;
 }
+
+/* ========================================================
+   CODING CAT DAY & NIGHT CELESTIAL ANIMATIONS
+   ======================================================== */
+
+/* Auto mode day-night cycle (12s loop) */
+.cat-anim-auto .cat-night-overlay {
+  animation: catNightOverlayCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-sunset-overlay {
+  animation: catSunsetOverlayCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-sun {
+  animation: catSunCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-moon {
+  animation: catMoonCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-stars {
+  animation: catStarsCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-clouds {
+  animation: catCloudsCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-lamp-light {
+  animation: catLampCycle 12s infinite ease-in-out;
+}
+.cat-anim-auto .cat-screen-glow {
+  animation: catScreenGlowCycle 12s infinite ease-in-out;
+}
+
+/* Manual Day Mode */
+.cat-anim-day .cat-night-overlay { opacity: 0 !important; }
+.cat-anim-day .cat-sunset-overlay { opacity: 0 !important; }
+.cat-anim-day .cat-sun {
+  transform: translate(115px, 45px) !important;
+  opacity: 1 !important;
+}
+.cat-anim-day .cat-moon {
+  transform: translate(195px, 150px) !important;
+  opacity: 0 !important;
+}
+.cat-anim-day .cat-stars { opacity: 0 !important; }
+.cat-anim-day .cat-clouds { opacity: 0.8 !important; }
+.cat-anim-day .cat-lamp-light { opacity: 0 !important; }
+.cat-anim-day .cat-screen-glow { opacity: 0.25 !important; }
+
+/* Manual Night Mode */
+.cat-anim-night .cat-night-overlay { opacity: 1 !important; }
+.cat-anim-night .cat-sunset-overlay { opacity: 0 !important; }
+.cat-anim-night .cat-sun {
+  transform: translate(95px, 150px) !important;
+  opacity: 0 !important;
+}
+.cat-anim-night .cat-moon {
+  transform: translate(175px, 45px) !important;
+  opacity: 1 !important;
+}
+.cat-anim-night .cat-stars { opacity: 1 !important; }
+.cat-anim-night .cat-clouds { opacity: 0.15 !important; }
+.cat-anim-night .cat-lamp-light { opacity: 0.85 !important; }
+.cat-anim-night .cat-screen-glow { opacity: 0.6 !important; }
+
+/* Persistent typing & life animations */
+.cat-paw-left {
+  animation: catPawTapLeft 0.35s infinite alternate ease-in-out;
+  transform-origin: 150px 174px;
+}
+.cat-paw-right {
+  animation: catPawTapRight 0.35s infinite alternate ease-in-out;
+  animation-delay: 0.175s;
+  transform-origin: 161px 174px;
+}
+.cat-tail {
+  animation: catTailSwish 2.4s infinite ease-in-out alternate;
+  transform-origin: 210px 180px;
+}
+.cat-cursor {
+  animation: catCursorBlink 0.8s infinite steps(2, start);
+}
+.cat-steam-1 {
+  animation: catSteamRise 2s infinite ease-out;
+}
+.cat-steam-2 {
+  animation: catSteamRise 2s infinite ease-out 1s;
+}
+.cat-stars .star-1 {
+  animation: catStarTwinkle 1.8s infinite alternate ease-in-out;
+}
+.cat-stars .star-2 {
+  animation: catStarTwinkle 2.3s infinite alternate ease-in-out 0.6s;
+}
+.cat-stars .star-3 {
+  animation: catStarTwinkle 1.5s infinite alternate ease-in-out 1.1s;
+}
+.cat-stars .star-pulse {
+  animation: catStarPulse 1.2s infinite alternate ease-in-out;
+}
+
+/* Keyframe definitions */
+@keyframes catNightOverlayCycle {
+  0%, 42%, 96%, 100% { opacity: 0; }
+  52%, 88% { opacity: 1; }
+}
+
+@keyframes catSunsetOverlayCycle {
+  0%, 38%, 60%, 100% { opacity: 0; }
+  45%, 50% { opacity: 0.85; }
+}
+
+@keyframes catSunCycle {
+  0% { transform: translate(45px, 120px); opacity: 0; }
+  10% { transform: translate(70px, 75px); opacity: 0.9; }
+  22%, 36% { transform: translate(115px, 45px); opacity: 1; }
+  45% { transform: translate(175px, 80px); opacity: 0.85; }
+  52%, 95% { transform: translate(205px, 140px); opacity: 0; }
+  100% { transform: translate(45px, 120px); opacity: 0; }
+}
+
+@keyframes catMoonCycle {
+  0%, 48% { transform: translate(65px, 130px); opacity: 0; }
+  56% { transform: translate(115px, 80px); opacity: 0.85; }
+  66%, 84% { transform: translate(175px, 45px); opacity: 1; }
+  92% { transform: translate(215px, 95px); opacity: 0.7; }
+  96%, 100% { transform: translate(235px, 140px); opacity: 0; }
+}
+
+@keyframes catStarsCycle {
+  0%, 50%, 94%, 100% { opacity: 0; }
+  56%, 88% { opacity: 1; }
+}
+
+@keyframes catCloudsCycle {
+  0% { transform: translateX(-15px); opacity: 0.5; }
+  25% { transform: translateX(10px); opacity: 0.85; }
+  45% { transform: translateX(25px); opacity: 0.6; }
+  55%, 90% { transform: translateX(40px); opacity: 0.1; }
+  100% { transform: translateX(-15px); opacity: 0.5; }
+}
+
+@keyframes catLampCycle {
+  0%, 48%, 93%, 100% { opacity: 0; }
+  54%, 88% { opacity: 0.9; }
+}
+
+@keyframes catScreenGlowCycle {
+  0%, 45%, 95%, 100% { opacity: 0.25; }
+  54%, 88% { opacity: 0.65; }
+}
+
+@keyframes catPawTapLeft {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3.5px); }
+}
+
+@keyframes catPawTapRight {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3.5px); }
+}
+
+@keyframes catTailSwish {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes catCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes catSteamRise {
+  0% { transform: translateY(0); opacity: 0; }
+  35% { opacity: 0.6; }
+  100% { transform: translateY(-8px); opacity: 0; }
+}
+
+@keyframes catStarTwinkle {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes catStarPulse {
+  0% { opacity: 0.4; transform: scale(0.7) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1.3) rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-anim-auto .cat-night-overlay,
+  .cat-anim-auto .cat-sunset-overlay,
+  .cat-anim-auto .cat-sun,
+  .cat-anim-auto .cat-moon,
+  .cat-anim-auto .cat-stars,
+  .cat-anim-auto .cat-clouds,
+  .cat-anim-auto .cat-lamp-light,
+  .cat-anim-auto .cat-screen-glow,
+  .cat-paw-left,
+  .cat-paw-right,
+  .cat-tail,
+  .cat-cursor,
+  .cat-steam-1,
+  .cat-steam-2,
+  .cat-stars .star-1,
+  .cat-stars .star-2,
+  .cat-stars .star-3,
+  .cat-stars .star-pulse {
+    animation: none !important;
+  }
+}
+
+/* ========================================================
+   KITTEN PLAYING BALL ALONG DIVIDER ANIMATIONS
+   ======================================================== */
+
+.kitten-patrol-wrap {
+  width: 100%;
+  height: 34px;
+  position: relative;
+}
+
+.kitten-traveler {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  width: 64px;
+  height: 32px;
+  animation: kittenPatrol 14s infinite ease-in-out;
+}
+
+.kitten-flipper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 32px 16px;
+  animation: kittenFlip 14s infinite step-end;
+}
+
+.kitten-paw-front-left {
+  animation: kittenStepLeft 0.3s infinite alternate ease-in-out;
+  transform-origin: 27px 22px;
+}
+
+.kitten-paw-front-right {
+  animation: kittenBatPaw 0.6s infinite alternate ease-in-out;
+  transform-origin: 32px 22px;
+}
+
+.kitten-paw-back-left {
+  animation: kittenStepBackLeft 0.3s infinite alternate ease-in-out;
+  transform-origin: 11px 22px;
+}
+
+.kitten-paw-back-right {
+  animation: kittenStepBackRight 0.3s infinite alternate ease-in-out;
+  transform-origin: 16px 22px;
+}
+
+.kitten-tail-wag {
+  animation: kittenTailWag 0.6s infinite alternate ease-in-out;
+  transform-origin: 9px 19px;
+}
+
+.kitten-ball-group {
+  transform-origin: 54px 25px;
+  animation: kittenBallSpin 0.7s infinite linear;
+}
+
+.kitten-ball-bounce {
+  animation: kittenBallHop 0.6s infinite alternate ease-in-out;
+}
+
+/* Patrol horizontally across the divider line */
+@keyframes kittenPatrol {
+  0% { left: 4px; }
+  44% { left: calc(100% - 68px); }
+  48% { left: calc(100% - 68px); }
+  94% { left: 4px; }
+  100% { left: 4px; }
+}
+
+/* Turn around at the ends of the patrol line */
+@keyframes kittenFlip {
+  0%, 45.9% { transform: scaleX(1); }
+  46%, 95.9% { transform: scaleX(-1); }
+  96%, 100% { transform: scaleX(1); }
+}
+
+@keyframes kittenStepLeft {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(12deg); }
+}
+
+@keyframes kittenStepBackLeft {
+  0% { transform: rotate(12deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+@keyframes kittenStepBackRight {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(12deg); }
+}
+
+@keyframes kittenBatPaw {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-16deg) translateY(-2px); }
+  100% { transform: rotate(10deg); }
+}
+
+@keyframes kittenTailWag {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(14deg); }
+}
+
+@keyframes kittenBallSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes kittenBallHop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kitten-traveler,
+  .kitten-flipper,
+  .kitten-paw-front-left,
+  .kitten-paw-front-right,
+  .kitten-paw-back-left,
+  .kitten-paw-back-right,
+  .kitten-tail-wag,
+  .kitten-ball-group,
+  .kitten-ball-bounce {
+    animation: none !important;
+  }
+}

@@ -9,6 +9,8 @@ import {
   Experience,
   CardPost,
   Footer,
+  CodingCat,
+  KittenPlayingBall,
 } from '@/app/components'
 
 const CAPABILITY_GROUPS = [
@@ -106,22 +108,35 @@ export default function Home() {
     <>
       <Navbar />
       <Main className="flex-1">
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center lg:items-start pt-2 sm:pt-4">
-          <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end">
-            <ProfileImage />
+        <section className="relative pt-2 sm:pt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col gap-6">
+              <AboutMe />
+              <div className="pt-2 w-full flex justify-center lg:justify-start">
+                <SocialMedia />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 lg:col-span-5 flex flex-col items-center lg:items-end justify-between self-stretch">
+              <ProfileImage />
+              <div className="hidden lg:flex justify-end w-full max-w-[280px] mt-16 xl:mt-24 -mb-px">
+                <CodingCat />
+              </div>
+            </div>
           </div>
 
-          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col gap-6">
-            <AboutMe />
-            <div className="pt-2 w-full flex justify-center lg:justify-start">
-              <SocialMedia />
-            </div>
+          <div className="block lg:hidden w-full max-w-[260px] mx-auto mt-14 sm:mt-16 -mb-px flex justify-center">
+            <CodingCat />
+          </div>
+
+          <div className="w-full lg:max-w-[55%] -mb-px mt-6 sm:mt-8 overflow-hidden pointer-events-none relative z-10">
+            <KittenPlayingBall />
           </div>
         </section>
 
         <section
           aria-labelledby="skills-heading"
-          className="mt-16 sm:mt-20 border-t border-paper-border dark:border-obsidian-border pt-12 sm:pt-16"
+          className="border-t border-paper-border dark:border-obsidian-border pt-12 sm:pt-16"
         >
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
